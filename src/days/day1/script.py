@@ -20,8 +20,7 @@ def sort_data(data):
 
 class Day1(Template):
     def __init__(self, func, data=0):
-        if data == 0:
-            data = fetch_data()
+        data = data if data != 0 else fetch_data()
         if len(data[0]) != len(data[1]):
             raise ValueError('Lists must be of same length')
         super().__init__(1, func, sort_data(data))
@@ -57,13 +56,11 @@ class Part2(Day1):
         list_2 = self.data[1]
         similarity = 0
         idx1 = idx2 = 0
-        print(list_1, list_2)
         while idx1 < len(list_1) and idx2 < len(list_1):
             val1 = list_1[idx1]
             val2 = list_2[idx2]
             idx1_count = 0
             idx2_count = 0
-            print('Testing for (%s, %s): (%s, %s)' % (idx1, idx2, val1, val2))
             if val1 == val2:
                 while idx1 < len(list_1) and list_1[idx1] == val2:
                     idx1 += 1
@@ -72,14 +69,8 @@ class Part2(Day1):
                     idx2 += 1
                     idx2_count += 1
             elif val1 < val2:
-                print('Increasing idx1 since %s < %s for index %s, %s' % (val1, val2, idx1, idx2))
                 idx1 += 1
             else:
-                print('Increasing idx2 since %s > %s for index %s, %s' % (val1, val2, idx1, idx2))
                 idx2 += 1
-
-            if val1 == val2:
-                print('Found %s of number %s in list1' % (idx1_count, val1))
-                print('Found %s of number %s in list2' % (idx2_count, val1))
             similarity += val1 * idx1_count * idx2_count
         return similarity
