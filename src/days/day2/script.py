@@ -13,7 +13,7 @@ def parse_data(data):
 
 class Day2(Template):
     def __init__(self, func, data=0):
-        super().__init__(1, func, parse_data, data)
+        super().__init__(2, func, parse_data, data)
 
     @staticmethod
     def part_1(data=0):
