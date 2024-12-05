@@ -1,6 +1,6 @@
-from src.days.day1.script import Day1
-from src.days.day2.script import Day2
-from src.days.day3.script import Day3
+from src.days.day_1 import Day1
+from src.days.day_2 import Day2
+from src.days.day_3 import Day3
 
 if __name__ == '__main__':
     print(Day1.part_1().run())

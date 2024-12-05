@@ -1,7 +1,7 @@
 from types import LambdaType
 from unittest import TestCase
 
-from src.days.day1.script import Day1
+from src.days.day_1 import Day1
 
 
 class Test(TestCase):

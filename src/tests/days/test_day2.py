@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.days.day2.script import Day2, Part1, Part2
+from src.days.day_2 import Day2, Part1, Part2
 
 data = [
     "7 6 4 2 1",

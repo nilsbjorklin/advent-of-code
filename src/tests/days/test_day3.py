@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.days.day3.script import Day3
+from src.days.day_3 import Day3
 
 
 class Part1Test(TestCase):
