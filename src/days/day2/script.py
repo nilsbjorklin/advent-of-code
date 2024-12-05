@@ -3,19 +3,17 @@ import copy
 from src.days.template import Template
 
 
-def fetch_data():
-    f = open('data/days/day2/data', 'r')
-    data = []
-    for line in f.readlines():
+def parse_data(data):
+    result = []
+    for line in data:
         parts = line.strip().split()
-        data.append([int(part) for part in parts])
-    return data
+        result.append([int(part) for part in parts])
+    return result
 
 
 class Day2(Template):
     def __init__(self, func, data=0):
-        data = data if data != 0 else fetch_data()
-        super().__init__(1, func, data)
+        super().__init__(1, func, parse_data, data)
 
     @staticmethod
     def part_1(data=0):

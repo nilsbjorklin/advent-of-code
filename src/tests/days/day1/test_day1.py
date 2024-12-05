@@ -6,9 +6,26 @@ from src.days.day1.script import Day1
 
 class Test(TestCase):
     def setUp(self):
-        self.day1 = Day1(LambdaType, ([1, 2, 2, 1], [3, 5, 6, 1]))
-        self.part1 = Day1.part_1(([1, 2, 2, 1], [3, 5, 6, 1]))
-        self.part2 = Day1.part_2(([3, 4, 2, 1, 3, 3], [4, 3, 5, 3, 9, 3]))
+        self.day1 = Day1(LambdaType, [
+            "1   3",
+            "2   5",
+            "2   6",
+            "1   1"
+        ])
+        self.part1 = Day1.part_1([
+            "1   3",
+            "2   5",
+            "2   6",
+            "1   1"
+        ])
+        self.part2 = Day1.part_2([
+            "3   4",
+            "4   3",
+            "2   5",
+            "1   3",
+            "3   9",
+            "3   3"
+        ])
 
     def test_data_is_sorted(self):
         with self.subTest("list1"):

@@ -1,29 +1,20 @@
 from src.days.template import Template
 
 
-def fetch_data():
-    f = open('data/days/day1/data', 'r')
-    data = ([], [])
-    for (i, line) in enumerate(f.readlines()):
+def parse_data(data):
+    result = ([], [])
+    for (i, line) in enumerate(data):
         parts = line.strip().split()
         if len(parts) != 2:
             raise ValueError('Invalid row at %s with value "%s"' % (i, line))
         else:
-            data[0].append(int(parts[0]))
-            data[1].append(int(parts[1]))
-    return data
-
-
-def sort_data(data):
-    return sorted(data[0]), sorted(data[1])
-
+            result[0].append(int(parts[0]))
+            result[1].append(int(parts[1]))
+    return sorted(result[0]), sorted(result[1])
 
 class Day1(Template):
     def __init__(self, func, data=0):
-        data = data if data != 0 else fetch_data()
-        if len(data[0]) != len(data[1]):
-            raise ValueError('Lists must be of same length')
-        super().__init__(1, func, sort_data(data))
+        super().__init__(1, func, parse_data, data)
 
     @staticmethod
     def part_1(data=0):

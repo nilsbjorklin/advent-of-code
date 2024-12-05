@@ -2,17 +2,17 @@ from unittest import TestCase
 
 from src.days.day2.script import Day2, Part1, Part2
 
-
+data = [
+    "7 6 4 2 1",
+    "1 2 7 8 9",
+    "9 7 6 2 1",
+    "1 3 2 4 5",
+    "8 6 4 4 1",
+    "1 3 6 7 9"
+]
 class Part1Test(TestCase):
-    data = [[7, 6, 4, 2, 1],
-            [1, 2, 7, 8, 9],
-            [9, 7, 6, 2, 1],
-            [1, 3, 2, 4, 5],
-            [8, 6, 4, 4, 1],
-            [1, 3, 6, 7, 9]]
-
     def setUp(self):
-        self.part1 = Day2.part_1(self.data)
+        self.part1 = Day2.part_1(data)
 
     def test_part1(self):
         self.assertEqual(2, self.part1.run())
@@ -46,21 +46,15 @@ class Part1Test(TestCase):
 
 
 class Part2Test(TestCase):
-    data = [[7, 6, 4, 2, 1],
-            [1, 2, 7, 8, 9],
-            [9, 7, 6, 2, 1],
-            [1, 3, 2, 4, 5],
-            [8, 6, 4, 4, 1],
-            [1, 3, 6, 7, 9]]
 
     def setUp(self):
-        self.part2 = Day2.part_2(self.data)
+        self.part2 = Day2.part_2(data)
 
     def test_part2(self):
-        self.assertEqual(2, self.part2.run())
+        self.assertEqual(4, self.part2.run())
 
     def test_sub_array(self):
-        self.assertEqual(2, Day2.part_2([[46, 50, 49, 51, 52, 54, 57, 58]]).run())
+        self.assertEqual(1, Day2.part_2(["46 50 49 51 52 54 57 58"]).run())
 
     def test_check_difference(self):
         with self.subTest("ascending 1"):
