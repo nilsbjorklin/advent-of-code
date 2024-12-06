@@ -91,7 +91,3 @@ class Part2(Day5):
                             update[after_index], update[before_index] = update[before_index], update[after_index]
                             return self.fix_update(update)
         return update
-
-    def compare(self, item1, item2):
-        rules = self.data[0]
-        return 1 if (item1 in rules and item2 in rules[item1]) else -1
