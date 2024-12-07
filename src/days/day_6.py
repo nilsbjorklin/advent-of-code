@@ -30,21 +30,6 @@ def parse_data(data):
     return guard, obstacles, row_limit, col_limit
 
 
-def parse(data: str) -> tuple[set[complex], complex, int, int]:
-    obstacles: set[complex] = set()
-    start = 0 + 0j
-    width, height = 0, 0
-    for y, row in enumerate(data.splitlines()):
-        width = len(row)
-        height = y
-        x = -1
-        while (x := row.find("#", x + 1)) >= 0:
-            obstacles.add(x + y * 1j)
-        if "^" in row:
-            start = row.find("^") + y * 1j
-    return obstacles, start, width, height + 1
-
-
 class Day6(Template):
     def __init__(self, func, data=0):
         super().__init__(6, func, parse_data, data)
