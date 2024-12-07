@@ -1,40 +1,41 @@
-import itertools
-from typing import Iterable
+from collections.abc import Callable
 
 from src.days.template import Template
 
 
 def parse_data(data):
     result = []
-    max_number_of_values = 0
     for row in data:
         total, values = row.split(':')
         values = [int(num) for num in values.strip().split(' ')]
-        max_number_of_values = max(max_number_of_values, len(values))
         result.append((int(total), values))
-    return result, max_number_of_values
-
-
-def operator_combinations(keys: range, options: Iterable):
-    result = {}
-    for i in keys:
-        result[i + 1] = []
-        for operator in list(itertools.product(options, repeat=i)):
-            result[i + 1].append(list(operator))
     return result
 
 
-def calculate(row, operators):
-    target, values = row
-    if values[0] > target: return 0
-    if not operators: return values[0]
-
-    return calculate((target, [operators[0](values[0], values[1])] + values[2:]), operators[1:])
+def calculate_values(target: int,
+                     values: list[int],
+                     value_builder: Callable[[int, int], list[int]],
+                     total: int = 0) -> int:
+    values_to_try: list[int] = []
+    if not values:
+        return target if target == total else 0
+    elif total > target:
+        return 0
+    elif not total:
+        values_to_try.append(values[0])
+    else:
+        values_to_try = value_builder(total, values[0])
+    for value in values_to_try:
+        res = calculate_values(target, values[1:], value_builder, value)
+        if res:
+            return res
+    return 0
 
 
 class Day7(Template):
-    def __init__(self, func, data=0):
-        super().__init__(7, func, parse_data, data)
+    def __init__(self, value_builder, data=0):
+        super().__init__(7, self.__func, parse_data, data)
+        self.value_builder = value_builder
 
     @staticmethod
     def part_1(data=0):
@@ -44,31 +45,26 @@ class Day7(Template):
     def part_2(data=0):
         return Part2(data)
 
+    def __func(self):
+        result = 0
+        for target, values in self.data:
+            result += calculate_values(target, values, self.value_builder)
+        return result
+
 
 class Part1(Day7):
     def __init__(self, data=0):
-        super().__init__(self.__func, data)
-        self.combs = operator_combinations(range(1, self.data[1]), [lambda a, b: a + b, lambda a, b: a * b])
+        super().__init__(self.value_builder, data)
 
-    def __func(self):
-        result = 0
-        for row in self.data[0]:
-            result += next((res for comb in self.combs[len(row[1])] if (res := calculate(row, comb)) == row[0]), 0)
-        return result
+    @staticmethod
+    def value_builder(total: int, value: int) -> list[int]:
+        return [total + value, total * value]
 
 
 class Part2(Day7):
     def __init__(self, data=0):
-        super().__init__(self.__func, data)
-        self.combs = operator_combinations(range(1, self.data[1]), [
-            lambda a, b: a + b,
-            lambda a, b: a * b,
-            lambda a, b: int(f"{a}{b}")
-        ])
+        super().__init__(self.value_builder, data)
 
-    def __func(self):
-        result = 0
-
-        for row in self.data[0][:50]:
-            result += next((res for comb in self.combs[len(row[1])] if (res := calculate(row, comb)) == row[0]), 0)
-        return result
+    @staticmethod
+    def value_builder(total: int, value: int) -> list[int]:
+        return [total + value, total * value, int(f"{total}{value}")]

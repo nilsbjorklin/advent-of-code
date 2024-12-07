@@ -14,7 +14,6 @@ data = [
     "292: 11 6 16 20"
 ]
 
-
 class Part1Test(TestCase):
 
     def setUp(self):
@@ -28,3 +27,6 @@ class Part2Test(TestCase):
 
     def setUp(self):
         self.part2 = Day7.part_2(data)
+
+    def test_part2(self):
+        self.assertEqual(11387, self.part2.run())
