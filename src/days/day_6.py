@@ -1,4 +1,4 @@
-import copy
+from copy import deepcopy
 
 from src.days.template import Template
 
@@ -43,14 +43,14 @@ def parse_data(data):
     obstacles: set[complex] = set()
     row_limit = len(data)
     col_limit = len(data[0].strip())
-    guard = None
+    pos: complex = 0 + 0j
     for (row_idx, row) in enumerate(data):
         for (col_idx, val) in enumerate(row):
             if val == '#':
                 obstacles.add(col_idx + row_idx * 1j)
             elif val == '^':
-                guard = Guard(col_idx + row_idx * 1j)
-    return guard, obstacles, row_limit, col_limit
+                pos = col_idx + row_idx * 1j
+    return pos, obstacles, row_limit, col_limit
 
 
 class Day6(Template):
@@ -65,120 +65,63 @@ class Day6(Template):
     def part_2(data=0):
         return Part2(data)
 
-
 class Part1(Day6):
     def __init__(self, data=0):
         super().__init__(self.__func, data)
 
     def __func(self):
-        guard, obstacles, height, width = self.data
-        while True:
-            next_move = guard.next_move_target()
-            if next_move in obstacles:
-                guard.turn()
-            elif 0 <= next_move.imag < height and 0 <= next_move.real < width:
-                guard.move(next_move)
+        pos, obstacles, height, width = self.data
+        direction = -1j
+        path = set()
+        while 0 <= pos.real < width and 0 <= pos.imag < height:
+            if pos + direction in obstacles:
+                direction *= 1j
             else:
-                return len(guard.path)
-
-
-def path_is_looped(guard: Guard, obstacles: list[complex], height: int, width: int):
-    while True:
-        next_move = guard.next_move_target()
-        if next_move in obstacles:
-            guard.turn()
-            last_two_turns = guard.get_latest_turns(2)
-            if last_two_turns[0] in guard.turns and last_two_turns[1] in guard.turns:
-                for i, turn in enumerate(guard.turns[:-2]):
-                    if turn == last_two_turns[0]:
-                        if guard.turns[i + 1] == last_two_turns[1]:
-                            return True
-        elif 0 <= next_move.imag < height and 0 <= next_move.real < width:
-            guard.move(next_move)
-        else:
-            print(f'guard exit at {guard.pos}')
-            return False
+                path.add(pos)
+                pos += direction
+        return len(set(path))
 
 
 class Part2(Day6):
     def __init__(self, data=0):
         super().__init__(self.__func, data)
 
+    def calculate_path(self):
+        pos, obstacles, height, width = deepcopy(self.data)
+        direction = -1j
+        path = []
+        while 0 <= pos.real < width and 0 <= pos.imag < height:
+            if pos + direction in obstacles:
+                direction *= 1j
+            else:
+                pos += direction
+                if pos not in path:
+                    path.append(pos)
+        return path
+
     def __func(self):
-        guard, obstacles, height, width = self.data
-        new_obstacles = []
-        while True:
-            next_move = guard.next_move_target()
-            if next_move in obstacles:
-                guard.turn()
-                turns = guard.get_latest_turns()
-                if len(turns) == 3:
-                    real = turns[0].real if turns[0].real != turns[1].real else turns[2].real
-                    imag = turns[0].imag if turns[0].imag != turns[1].imag else turns[2].imag
-                    new_obstacle = real + imag * 1j + guard.direction
-                    if self.potential_obstacle(new_obstacle):
-                        new_obstacles.append(new_obstacle)
+        path = self.calculate_path()
+        pos, obstacles, height, width = self.data
+        num_obstacles = 0
+        for i, location in enumerate(path):
+            new_obstacles = deepcopy(obstacles)
+            new_obstacles.add(location)
+            if check_looping(pos, new_obstacles, height, width):
+                num_obstacles += 1
+        return num_obstacles
 
-            elif 0 <= next_move.imag < height and 0 <= next_move.real < width:
-                guard.move(next_move)
-            else:
-                ''' for obstacle in new_obstacles:
-                     image = []
-                     for j in range(height):
-                         row = []
-                         for i in range(width):
-                             if i + j * 1j in obstacle:
-                                 if obstacle.index(i + j * 1j) == 3:
-                                     row.append('O')
-                                 else:
-                                     row.append('X')
-                             else:
-                                 row.append('.')
-                         row.append("")
-                         image.append(''.join(row))
-                     print('\n'.join(image), '\n')'''
-                # self.potential_obstacle()
-                last_turn = guard.get_latest_turns(1)[0]
-                path = set()
-                num_steps = int(abs((last_turn - guard.pos).imag + (last_turn - guard.pos).real)) + 1
-                path.update(last_turn + step * + guard.direction for step in range(1, num_steps))
-                for obstacle in path:
-                    new_guard = copy.deepcopy(guard)
-                    new_guard.pos = last_turn
-                    if path_is_looped(new_guard, list(obstacles) + [obstacle], height, width):
-                        new_obstacles.append(obstacle)
-                    else:
-                        print(f'invalid obstacle {obstacle}')
-                image = []
-                for j in range(height):
-                    row = []
-                    for i in range(width):
-                        if i + j * 1j in guard.turns:
-                            row.append(f"{guard.turns.index(i + j * 1j)}")
-                        elif i + j * 1j in obstacles:
-                            row.append('#')
-                        else:
-                            row.append('.')
-                    row.append("")
-                    image.append(''.join(row))
-                print('\n'.join(image), '\n')
-                print()
-                return len(new_obstacles)
 
-    def potential_obstacle(self, new_obstacle):
-        guard, obstacles, _, _ = self.data
-        if new_obstacle not in guard.path:
-            path = set()
-            num_steps = int(abs((new_obstacle - guard.pos).imag + (new_obstacle - guard.pos).real))
-            path.update(guard.pos + step * guard.direction for step in range(1, num_steps))
-
-            conflict = set(path).intersection(obstacles)
-
-            if len(set(path).intersection(obstacles)) == 0:
-                print(f'added obstacle at {new_obstacle}')
-                return True
-            else:
-                print(f'did not add obstacle at {new_obstacle} due to conflict at {list(conflict)}')
+def check_looping(pos, obstacles, height, width):
+    direction = -1j
+    memory = set()
+    dir_count = 0
+    while 0 <= pos.real < width and 0 <= pos.imag < height:
+        if (pos, direction) in memory:
+            return True
+        if (pos + direction) in obstacles:
+            memory.add((pos, direction))
+            direction *= 1j
         else:
-            print(f'did not add obstacle at {new_obstacle} due to path already travelled')
-        return False
+            dir_count += 1
+            pos += direction
+    return False
