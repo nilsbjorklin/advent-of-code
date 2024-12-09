@@ -3,21 +3,6 @@ import itertools
 from src.days.functions import print_2d
 from src.days.template import Template
 
-data = [
-    "............",
-    "........0...",
-    ".....0......",
-    ".......0....",
-    "....0.......",
-    "......A.....",
-    "............",
-    "............",
-    "........A...",
-    ".........A..",
-    "............",
-    "............"
-]
-
 
 def parse_data(data):
     result = {}
@@ -78,7 +63,38 @@ class Part1(Day8):
 
 class Part2(Day8):
     def __init__(self, data=0):
+        self.antinodes = set()
         super().__init__(self.__func, data)
 
+    node_is_valid = lambda self, val: 0 <= int(val.imag) < self.data[2] and 0 <= int(val.real) < self.data[3]
+    create_node = lambda self, a, b, x: (a - b) * x + a
+
+    def create_nodes(self, a, b):
+        return self.create_nodes_increment(a, b, 1) + self.create_nodes_increment(a, b, -1)
+
+    def create_nodes_increment(self, a, b, multiplier_increment):
+        nodes = []
+        multiplier = 1
+        while True:
+            node = self.create_node(a, b, multiplier)
+            if self.node_is_valid(node):
+                nodes.append(node)
+                multiplier += multiplier_increment
+            else:
+                return nodes
+
     def __func(self):
-        pass
+        antennas, icon_dict, width, height = self.data
+        nodes = set()
+        for antenna_type in antennas.keys():
+            indexes: list[int] = list(range(len(antennas[antenna_type])))
+            orderings = list(itertools.permutations(indexes, 2))
+            for order in orderings:
+                nodes.update(self.create_nodes(antennas[antenna_type][order[0]], antennas[antenna_type][order[1]]))
+        node_dict = {}
+        for node in nodes: node_dict[node] = '#'
+        print()
+        print_2d(width, height, icon_dict)
+        print('----------------------------------------------------------------')
+        print(print_2d(width, height, node_dict))
+        return len(nodes)

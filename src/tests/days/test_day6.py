@@ -30,5 +30,5 @@ class Part2Test(TestCase):
     def setUp(self):
         self.part2 = Day6.part_2(data)
 
-    def test_part1(self):
+    def test_part2(self):
         self.assertEqual(6, self.part2.run())
