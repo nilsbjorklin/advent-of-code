@@ -24,4 +24,4 @@ def run(input_data: list[str]):
 
 
 if __name__ == '__main__':
-    print(run(open('../../data/days/8/data', 'r').readlines()))
+    print(run(open('../../data/days/08/data', 'r').readlines()))
