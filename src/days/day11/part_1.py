@@ -1,8 +1,5 @@
 import math
 
-from src.days.functions import time_method
-
-
 def read_data(input_data):
     stones = []
     for stone in input_data[0].split(' '):
@@ -13,7 +10,6 @@ def read_data(input_data):
 def run(input_data: list[str], num_blinks):
     stones = read_data(input_data)
     result = 0
-    print(stones, num_blinks)
     for stone in stones:
         result += blink(stone, num_blinks)
     return result
@@ -33,4 +29,4 @@ def blink(stone, num_blinks):
 
 
 if __name__ == '__main__':
-    print(time_method('main', run, open('../../data/days/11/data', 'r').readlines(), 25))
+    print(run(open('../../data/days/11/data', 'r').readlines(), 25))
