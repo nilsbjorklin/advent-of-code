@@ -1,5 +1,6 @@
 import math
 
+
 def read_data(input_data):
     stones = []
     for stone in input_data[0].split(' '):

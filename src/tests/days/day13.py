@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from src.days.day13.part_1 import run as part_1_run
+from src.days.day13.part_2 import run as part_2_run
 
 test_data_mini = '''
 Button A: X+94, Y+34
@@ -26,10 +27,15 @@ Button B: X+27, Y+71
 Prize: X=18641, Y=10279
 '''
 
-
 class TestPart1(TestCase):
     def test_part_1_mini_1(self):
         self.assertEqual(280, part_1_run(test_data_mini))
 
     def test_part_1(self):
         self.assertEqual(480, part_1_run(test_data))
+
+
+class TestPart2(TestCase):
+
+    def test_part_1(self):
+        self.assertEqual(875318608908, part_2_run(test_data))
