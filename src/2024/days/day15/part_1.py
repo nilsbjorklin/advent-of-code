@@ -1,68 +1,48 @@
-def read_data(input_data):
-    robot = 0
-    moves = []
-    walls = set()
-    boxes = set()
-    upper_wall = input_data[0]
-    width = len(upper_wall) - 2
-    height = 0
-    parse_grid = True
-    for row_idx, row in enumerate(input_data[1:]):
-        if row == upper_wall:
-            height = row_idx
-            continue
-        if len(row.strip()) == 0:
-            parse_grid = False
-            continue
-        if parse_grid:
-            for col_idx in range(width):
-                pos = col_idx + row_idx * 1j
-                match row.strip()[col_idx + 1]:
-                    case '@':
-                        robot = pos
-                    case '#':
-                        walls.add(pos)
-                    case 'O':
-                        boxes.add(pos)
-        else:
-            for direction in row:
-                match direction:
-                    case '<':
-                        moves.append(-1)
-                    case '^':
-                        moves.append(-1j)
-                    case '>':
-                        moves.append(1)
-                    case 'v':
-                        moves.append(1j)
-    return width + height * 1j, robot, moves, walls, boxes
+def read_data(input_data) -> (complex, dict[set], list[complex]):
+    values = ['@', '#', 'O']
+    move_values = {'<': -1, '^': -1j, '>': 1, 'v': 1j}
+    grid_data, move_data = input_data.split("\n\n")
+    grid = {
+        char: {col_idx + row_idx * 1j
+               for row_idx, row in enumerate(grid_data.strip().splitlines()[1:][:-1])
+               for col_idx, c in enumerate(row.strip()[1:][:-1]) if c == char
+               }
+        for char in values
+    }
+    return (
+        len(grid_data.splitlines()[0]) - 2 + (len(grid_data.splitlines()) - 2) * 1j,
+        list(grid.pop(values[0]))[0],
+        grid,
+        [move_values[move] for line in move_data.strip().splitlines() for move in line.strip()]
+    )
 
 
-def run(input_data: list[str]):
-    size, robot, moves, walls, boxes = read_data(input_data)
+def run(input_data: str):
+    size, robot, grid, moves = read_data(input_data)
+
     for move_direction in moves:
-        robot = move(size, robot, move_direction, walls, boxes)
+        robot = try_move(size, robot, move_direction, grid)
 
-    return sum([int(box.imag + 1) * 100 + int(box.real + 1) for box in boxes])
+    return sum([int(box.imag + 1) * 100 + int(box.real + 1) for box in grid['O']])
 
 
-def move(size, pos, move_direction, walls, boxes, box=False):
+def try_move(size, pos, move_direction, grid, box=False):
     next_pos = pos + move_direction
     if 0 > next_pos.real or next_pos.real >= size.real:
         return pos
     elif 0 > next_pos.imag or next_pos.imag >= size.imag:
         return pos
-    elif next_pos in walls:
+    elif next_pos in grid['#']:
         return pos
-    elif next_pos in boxes:
-        next_box = move(size, next_pos, move_direction, walls, boxes, True)
+    elif next_pos in grid['O']:
+        next_box = try_move(size, next_pos, move_direction, grid, True)
         if next_box == next_pos:
             return pos
     if box:
-        boxes.remove(pos)
-        boxes.add(next_pos)
+        grid['O'].remove(pos)
+        grid['O'].add(next_pos)
     return next_pos
 
 
 if __name__ == '__main__':
-    print(run(open('data', 'r').readlines()))
+    print(run(open('data', 'r').read()))
