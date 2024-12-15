@@ -2,8 +2,6 @@ import re
 
 import numpy as np
 
-from src.days.functions import time_method
-
 
 def read_data(input_data):
     data = []
@@ -33,4 +31,4 @@ def run(input_data):
 
 
 if __name__ == '__main__':
-    print(time_method('Day 13 Part 02', run, open('../../data/days/13/data', 'r').read()))
+    run(open('../../data/days/13/data', 'r').read())

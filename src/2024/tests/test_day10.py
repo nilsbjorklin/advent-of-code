@@ -1,7 +1,8 @@
+from importlib import import_module
 from unittest import TestCase
 
-from src.days.day10.part_1 import run as part_1_run
-from src.days.day10.part_2 import run as part_2_run
+part_1 = import_module('src.2024.days.day10.part_1')
+part_2 = import_module('src.2024.days.day10.part_2')
 
 test_data_part_1_mini = '''
 0123
@@ -52,19 +53,19 @@ test_data_part_2_mini_3 = '''
 class Test(TestCase):
 
     def test_part_1_mini(self):
-        self.assertEqual(1, part_1_run(test_data_part_1_mini.strip().splitlines()))
+        self.assertEqual(1, part_1.run(test_data_part_1_mini.strip().splitlines()))
 
     def test_part_1(self):
-        self.assertEqual(36, part_1_run(test_data.strip().splitlines()))
+        self.assertEqual(36, part_1.run(test_data.strip().splitlines()))
 
     def test_part_2_mini(self):
-        self.assertEqual(227, part_2_run(test_data_part_2_mini.strip().splitlines()))
+        self.assertEqual(227, part_2.run(test_data_part_2_mini.strip().splitlines()))
 
     def test_part_2_mini_2(self):
-        self.assertEqual(3, part_2_run(test_data_part_2_mini_2.strip().splitlines()))
+        self.assertEqual(3, part_2.run(test_data_part_2_mini_2.strip().splitlines()))
 
     def test_part_2_mini_3(self):
-        self.assertEqual(13, part_2_run(test_data_part_2_mini_3.strip().splitlines()))
+        self.assertEqual(13, part_2.run(test_data_part_2_mini_3.strip().splitlines()))
 
     def test_part_2(self):
-        self.assertEqual(81, part_2_run(test_data.strip().splitlines()))
+        self.assertEqual(81, part_2.run(test_data.strip().splitlines()))

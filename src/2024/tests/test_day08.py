@@ -1,7 +1,8 @@
+from importlib import import_module
 from unittest import TestCase
 
-from src.days.day08.part_1 import run as part_1_run
-from src.days.day08.part_2 import run as part_2_run
+part_1 = import_module('src.2024.days.day08.part_1')
+part_2 = import_module('src.2024.days.day08.part_2')
 
 test_data = '''
 ............
@@ -22,7 +23,7 @@ test_data = '''
 class Test(TestCase):
 
     def test_part_1(self):
-        self.assertEqual(14, part_1_run(test_data.strip().splitlines()))
+        self.assertEqual(14, part_1.run(test_data.strip().splitlines()))
 
     def test_part_2(self):
-        self.assertEqual(34, part_2_run(test_data.strip().splitlines()))
+        self.assertEqual(34, part_2.run(test_data.strip().splitlines()))
