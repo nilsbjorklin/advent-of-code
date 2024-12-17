@@ -24,15 +24,11 @@ def run(input_data):
 
 def run_program(*program: int):
     global instruction_pointer
-    loop_limit = 100
-    counter = 0
-    while instruction_pointer + 1 < len(program) and counter < loop_limit:
+    while instruction_pointer + 1 < len(program):
         op_code = program[instruction_pointer]
         operand = program[instruction_pointer + 1]
         instruction_pointer += 2
         run_operation(op_code, operand)
-        counter += 1
-    pass
 
 
 def run_operation(op_code, operand):
