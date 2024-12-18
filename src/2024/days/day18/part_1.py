@@ -4,7 +4,7 @@ graph = nx.Graph()
 directions = [(1, 0), (0, 1)]
 
 
-def read_data(input_data: str, num_of_bytes) -> [int, int, int, list]:
+def read_data(input_data: str, num_of_bytes):
     return [tuple(map(int, row.strip().split(','))) for row in input_data.strip().splitlines()[:num_of_bytes]]
 
 
