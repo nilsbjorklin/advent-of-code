@@ -22,6 +22,17 @@ def run(input_data):
     return ','.join(map(str, output))
 
 
+def run_with_input(program, new_registers):
+    global registers
+    global instruction_pointer
+    global output
+    registers = new_registers
+    instruction_pointer = 0
+    output = []
+    run_program(*program)
+    return output
+
+
 def run_program(*program: int):
     global instruction_pointer
     while instruction_pointer + 1 < len(program):

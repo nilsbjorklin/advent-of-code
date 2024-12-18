@@ -2,18 +2,26 @@ from importlib import import_module
 from unittest import TestCase
 
 part_1 = import_module('src.2024.days.day17.part_1')
+part_2 = import_module('src.2024.days.day17.part_2')
 
-test_data = '''
+test_data_part_1 = '''
 Register A: 729
 Register B: 0
 Register C: 0
 
 Program: 0,1,5,4,3,0'''
 
+test_data_part_2 = '''
+Register A: 2024
+Register B: 0
+Register C: 0
+
+Program: 0,3,5,4,3,0'''
+
 
 class TestPart1(TestCase):
     def test_part_1(self):
-        self.assertEqual('4,6,3,5,6,3,5,2,1,0', part_1.run(test_data))
+        self.assertEqual('4,6,3,5,6,3,5,2,1,0', part_1.run(test_data_part_1))
 
     def test_part_1_case_1(self):
         part_1.registers['C'] = 9
@@ -43,3 +51,15 @@ class TestPart1(TestCase):
         part_1.registers['C'] = 43690
         part_1.run_program(4, 0)
         self.assertEqual(44354, part_1.registers['B'])
+
+
+class TestPart2(TestCase):
+
+    def test_part_2(self):
+        new_register_a_value = part_2.run(test_data_part_2)
+        with self.subTest('part_2 returns expected value'):
+            self.assertEqual(117440, new_register_a_value)
+        with self.subTest('value validated'):
+            part_1.registers['A'] = new_register_a_value
+            part_1.run_program(0, 3, 5, 4, 3, 0)
+            self.assertEqual('0,3,5,4,3,0', ','.join(map(str, part_1.output)))
