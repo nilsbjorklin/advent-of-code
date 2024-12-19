@@ -1,8 +1,8 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.day17.part_1')
-part_2 = import_module('src.2024.days.day17.part_2')
+part_1 = import_module('src.2024.days.17.part_1')
+part_2 = import_module('src.2024.days.17.part_2')
 
 test_data_part_1 = '''
 Register A: 729
@@ -20,6 +20,15 @@ Program: 0,3,5,4,3,0'''
 
 
 class TestPart1(TestCase):
+    def setUp(self):
+        part_1.registers = {
+            'A': 0,
+            'B': 0,
+            'C': 0
+        }
+        part_1.instruction_pointer = 0
+        part_1.output = []
+
     def test_part_1(self):
         self.assertEqual('4,6,3,5,6,3,5,2,1,0', part_1.run(test_data_part_1))
 
@@ -54,6 +63,14 @@ class TestPart1(TestCase):
 
 
 class TestPart2(TestCase):
+    def setUp(self):
+        part_1.registers = {
+            'A': 0,
+            'B': 0,
+            'C': 0
+        }
+        part_1.instruction_pointer = 0
+        part_1.output = []
 
     def test_part_2(self):
         new_register_a_value = part_2.run(test_data_part_2)

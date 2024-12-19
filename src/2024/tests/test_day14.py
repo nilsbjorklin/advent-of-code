@@ -1,8 +1,8 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.day14.part_1')
-part_2 = import_module('src.2024.days.day14.part_2')
+part_1 = import_module('src.2024.days.14.part_1')
+part_2 = import_module('src.2024.days.14.part_2')
 
 test_data = '''
 p=0,4 v=3,-3

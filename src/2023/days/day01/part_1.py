@@ -17,4 +17,4 @@ def run(input_data: list[str]):
 
 
 if __name__ == '__main__':
-    print(run(open('../../data/days/01/data', 'r').readlines()))
+    print(run(open('src/2024/data/days/01/data', 'r').readlines()))

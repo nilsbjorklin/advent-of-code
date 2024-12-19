@@ -1,8 +1,8 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.day13.part_1')
-part_2 = import_module('src.2024.days.day13.part_2')
+part_1 = import_module('src.2024.days.13.part_1')
+part_2 = import_module('src.2024.days.13.part_2')
 
 test_data_mini = '''
 Button A: X+94, Y+34
