@@ -28,4 +28,4 @@ def run(input_data, num_of_bytes, size):
 
 
 if __name__ == '__main__':
-    print(run(open('src/2024/days/day18/data', 'r').read(), 1024, 71))
+    print(run(open('src/2024/data/days/18/data', 'r').read(), 1024, 71))

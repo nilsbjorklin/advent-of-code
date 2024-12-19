@@ -47,4 +47,4 @@ def run(input_data, size):
 
 
 if __name__ == '__main__':
-    print(run(open('data', 'r').read(), 71))
+    print(run(open('src/2024/data/days/18/data', 'r').read(), 71))

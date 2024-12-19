@@ -4,7 +4,6 @@ from typing import Union
 def read_data(input_data) -> Union[complex, dict[set], list[complex]]:
     values = ['@', '#', 'O']
     move_values = {'<': -1, '^': -1j, '>': 1, 'v': 1j}
-    print(input_data)
     grid_data, move_data = input_data.split("\n\n")
     grid = {
         char: {col_idx + row_idx * 1j

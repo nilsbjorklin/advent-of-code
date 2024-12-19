@@ -27,11 +27,6 @@ def run(input_data: list[str]):
             result += value.size
     return result
 
-
-def comparator(x):
-    print(x)
-
-
 def array_step(prev_array=None, value=9):
     if prev_array is None:
         prev_array = np.full((width, height), None)
