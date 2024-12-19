@@ -21,5 +21,6 @@ class TestPart1(TestCase):
         self.assertEqual(11, part_1.run(test_data.strip().splitlines()))
 
 class TestPart2(TestCase):
+    
     def test_part_2(self):
         self.assertEqual(31, part_2.run(test_data.strip().splitlines()))
