@@ -5,7 +5,7 @@ instruction_pointer = 0
 output = -1
 
 
-def read_data(input_data: str) -> [int, int, int, list]:
+def read_data(input_data: str) -> list:
     program = re.compile(r'Program: ([\d,]+)').findall(input_data)[0].split(',')
     return list(map(int, program))
 

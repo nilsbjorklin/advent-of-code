@@ -6,7 +6,7 @@ robot = 0
 size = 0
 
 
-def read_data(input_data) -> (complex, dict[set], list[complex]):
+def read_data(input_data) -> list:
     global boxes
     global walls
     global robot

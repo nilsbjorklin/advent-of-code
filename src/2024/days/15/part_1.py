@@ -1,4 +1,7 @@
-def read_data(input_data) -> (complex, dict[set], list[complex]):
+from typing import Union
+
+
+def read_data(input_data) -> Union[complex, dict[set], list[complex]]:
     values = ['@', '#', 'O']
     move_values = {'<': -1, '^': -1j, '>': 1, 'v': 1j}
     print(input_data)
