@@ -14,7 +14,8 @@ def read_data(input_data):
 def run(input_data: list[str]):
     safe_report_count = 0
     for report in read_data(input_data):
-        if list_is_valid(report): safe_report_count += 1
+        if list_is_valid(report):
+            safe_report_count += 1
     return safe_report_count
 
 
@@ -31,9 +32,10 @@ def list_is_valid(lst, remove_index=None):
 
     if remove_index is None:
         for i in suspected_indexes:
-            if list_is_valid(modified_list, i): return True
+            if list_is_valid(modified_list, i):
+                return True
     return not bool(suspected_indexes)
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/02/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/02/data", "r").readlines()))

@@ -46,5 +46,5 @@ def run(input_data: list[str]):
     return result
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/12/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/12/data", "r").readlines()))

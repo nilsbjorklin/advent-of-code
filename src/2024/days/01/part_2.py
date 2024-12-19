@@ -1,6 +1,6 @@
 def read_data(input_data):
     result = ([], [])
-    for (i, line) in enumerate(input_data):
+    for i, line in enumerate(input_data):
         parts = line.strip().split()
         if len(parts) == 2:
             result[0].append(int(parts[0]))
@@ -32,5 +32,5 @@ def run(input_data: list[str]):
     return similarity
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/01/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/01/data", "r").readlines()))

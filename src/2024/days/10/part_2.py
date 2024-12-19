@@ -16,7 +16,7 @@ def read_data(input_data):
     height = len(input_data)
     for y, row in enumerate(input_data):
         for x, value in enumerate(row.strip()):
-            if value != '.':
+            if value != ".":
                 data[int(value)].add(x + y * 1j)
 
 
@@ -45,5 +45,5 @@ def connections(path=None, parent=None, incline=0):
         return total
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/10/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/10/data", "r").readlines()))

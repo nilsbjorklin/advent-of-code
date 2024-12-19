@@ -7,13 +7,17 @@ import numpy as np
 
 
 def read_data(input_data):
-    pattern = re.compile(r'\w=(-?\d+),(-?\d+)')
+    pattern = re.compile(r"\w=(-?\d+),(-?\d+)")
     robots_pos = []
     robots_move = []
     for row in input_data:
-        pos, move = row.split(' ')
-        robots_pos.append(np.array([int(val) for val in re.match(pattern, pos).groups()]))
-        robots_move.append(np.array([int(val) for val in re.match(pattern, move).groups()]))
+        pos, move = row.split(" ")
+        robots_pos.append(
+            np.array([int(val) for val in re.match(pattern, pos).groups()])
+        )
+        robots_move.append(
+            np.array([int(val) for val in re.match(pattern, move).groups()])
+        )
     return np.array(robots_pos), np.array(robots_move)
 
 
@@ -34,5 +38,5 @@ def run(input_data, steps, size):
     return functools.reduce(mul, result.values())
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/14/data', 'r').readlines(), 100, [101, 103]))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/14/data", "r").readlines(), 100, [101, 103]))

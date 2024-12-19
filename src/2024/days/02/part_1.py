@@ -21,5 +21,5 @@ def run(input_data: list[str]):
     return safe_report_count
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/02/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/02/data", "r").readlines()))

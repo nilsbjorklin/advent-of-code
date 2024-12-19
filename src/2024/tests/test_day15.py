@@ -2,10 +2,10 @@ from collections import defaultdict
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.15.part_1')
-part_2 = import_module('src.2024.days.15.part_2')
+part_1 = import_module("src.2024.days.15.part_1")
+part_2 = import_module("src.2024.days.15.part_2")
 
-test_data_part_1_mini = '''
+test_data_part_1_mini = """
 ########
 #..O.O.#
 ##@.O..#
@@ -15,9 +15,9 @@ test_data_part_1_mini = '''
 #......#
 ########
 
-<^^>>>vv<v>>v<<'''
+<^^>>>vv<v>>v<<"""
 
-test_data_part_2_mini = '''
+test_data_part_2_mini = """
 #######
 #...#.#
 #.....#
@@ -26,9 +26,9 @@ test_data_part_2_mini = '''
 #.....#
 #######
 
-<vv<<^^<<^^'''
+<vv<<^^<<^^"""
 
-test_data = '''
+test_data = """
 ##########
 #..O..O.O#
 #......O.#
@@ -50,7 +50,7 @@ vvv<<^>^v^^><<>>><>^<<><^vv^^<>vvv<>><^^v>^>vv<>v<<<<v<^v>^<^^>>>^<v<v
 <><^^>^^^<><vvvvv^v<v<<>^v<v>v<<^><<><<><<<^^<<<^<<>><<><^^^>^^<>^>v<>
 ^^>vv<^v^v<vv>^<><v<^v>^^^>>>^^vvv^>vvv<>>>^<^>>>>>^<<^v>^vvv<>^<><<v>
 v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^
-'''
+"""
 
 
 class TestPart1(TestCase):

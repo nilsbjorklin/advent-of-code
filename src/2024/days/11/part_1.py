@@ -3,7 +3,7 @@ import math
 
 def read_data(input_data):
     stones = []
-    for stone in input_data[0].split(' '):
+    for stone in input_data[0].split(" "):
         stones.append(int(stone))
     return stones
 
@@ -29,5 +29,5 @@ def blink(stone, num_blinks):
         return blink(stone * 2024, num_blinks - 1)
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/11/data', 'r').readlines(), 25))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/11/data", "r").readlines(), 25))

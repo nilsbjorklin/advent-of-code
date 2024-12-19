@@ -16,7 +16,7 @@ def run(input_data: list[str]):
     blocks, start, end = read_data(input_data)
     result = 0
     counter = 0
-    visual_result = ''
+    visual_result = ""
     while start < len(blocks):
         if not start < end:
             if blocks[start][0] is not None:
@@ -49,5 +49,5 @@ def run(input_data: list[str]):
     return result
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/09/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/09/data", "r").readlines()))

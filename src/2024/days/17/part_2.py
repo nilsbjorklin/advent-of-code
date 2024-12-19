@@ -6,7 +6,7 @@ output = -1
 
 
 def read_data(input_data: str) -> list:
-    program = re.compile(r'Program: ([\d,]+)').findall(input_data)[0].split(',')
+    program = re.compile(r"Program: ([\d,]+)").findall(input_data)[0].split(",")
     return list(map(int, program))
 
 
@@ -33,7 +33,9 @@ def find_lowest_a_value(program, program_index, a_value):
                 break
             instruction_pointer += 2
         if output == program[program_index]:
-            next_result = find_lowest_a_value(program, program_index - 1, a_value * 8 | number)
+            next_result = find_lowest_a_value(
+                program, program_index - 1, a_value * 8 | number
+            )
             if next_result:
                 return next_result
     return False
@@ -69,5 +71,5 @@ def combo_operand(operand):
     return operand
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/17/data', 'r').read()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/17/data", "r").read()))

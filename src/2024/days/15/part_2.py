@@ -12,30 +12,41 @@ def read_data(input_data) -> list:
     global robot
     global size
 
-    move_values = {'<': -1, '^': -1j, '>': 1, 'v': 1j}
+    move_values = {"<": -1, "^": -1j, ">": 1, "v": 1j}
     grid_data, move_data = input_data.split("\n\n")
     for row_idx, row in enumerate(grid_data.strip().splitlines()[1:][:-1]):
         for col_idx, c in enumerate(row.strip()[1:][:-1]):
             pos = col_idx * 2 + row_idx * 1j
-            if c == '@':
+            if c == "@":
                 robot = pos
-            elif c == '#':
+            elif c == "#":
                 walls.add(pos)
                 walls.add(pos + 1)
-            elif c == 'O':
+            elif c == "O":
                 boxes[pos] = pos + 1
                 boxes[pos + 1] = pos
 
-    size = (len(grid_data.splitlines()[0]) - 2) * 2 + (len(grid_data.splitlines()) - 2) * 1j
+    size = (len(grid_data.splitlines()[0]) - 2) * 2 + (
+        len(grid_data.splitlines()) - 2
+    ) * 1j
 
-    return [move_values[move] for move in move_data.strip().replace('\n', '')]
+    return [move_values[move] for move in move_data.strip().replace("\n", "")]
 
 
 def run(input_data: str):
     moves = read_data(input_data)
     for move in moves:
         move_robot(move)
-    return sum([(100 * (int(box.imag) + 1) + int(box.real) + 2) if box - boxes[box] == -1 else 0 for box in boxes])
+    return sum(
+        [
+            (
+                (100 * (int(box.imag) + 1) + int(box.real) + 2)
+                if box - boxes[box] == -1
+                else 0
+            )
+            for box in boxes
+        ]
+    )
 
 
 def move_robot(move):
@@ -88,5 +99,5 @@ def next_pos_status(pos):
     return True, None
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/15/data', 'r').read()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/15/data", "r").read()))

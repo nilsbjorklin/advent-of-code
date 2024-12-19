@@ -5,7 +5,10 @@ directions = [(1, 0), (0, 1)]
 
 
 def read_data(input_data: str, num_of_bytes):
-    return [tuple(map(int, row.strip().split(','))) for row in input_data.strip().splitlines()[:num_of_bytes]]
+    return [
+        tuple(map(int, row.strip().split(",")))
+        for row in input_data.strip().splitlines()[:num_of_bytes]
+    ]
 
 
 def build_graph(corrupted_squares, limit):
@@ -27,5 +30,5 @@ def run(input_data, num_of_bytes, size):
     return nx.shortest_path_length(graph, (0, 0), (size - 1, size - 1))
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/18/data', 'r').read(), 1024, 71))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/18/data", "r").read(), 1024, 71))

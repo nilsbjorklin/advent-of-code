@@ -2,26 +2,26 @@ from collections import defaultdict
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.10.part_1')
-part_2 = import_module('src.2024.days.10.part_2')
+part_1 = import_module("src.2024.days.10.part_1")
+part_2 = import_module("src.2024.days.10.part_2")
 
-test_data_part_1_mini = '''
+test_data_part_1_mini = """
 0123
 1234
 8765
 9876
-'''
+"""
 
-test_data_part_2_mini = '''
+test_data_part_2_mini = """
 012345
 123456
 234567
 345678
 416789
 567891
-'''
+"""
 
-test_data = '''
+test_data = """
 89010123
 78121874
 87430965
@@ -30,9 +30,9 @@ test_data = '''
 32019012
 01329801
 10456732
-'''
+"""
 
-test_data_part_2_mini_2 = '''
+test_data_part_2_mini_2 = """
 .....0.
 ..4321.
 ..5..2.
@@ -40,15 +40,15 @@ test_data_part_2_mini_2 = '''
 ..7..4.
 ..8765.
 ..9....
-'''
-test_data_part_2_mini_3 = '''
+"""
+test_data_part_2_mini_3 = """
 ..90..9
 ...1.98
 ...2..7
 6543456
 765.987
 876....
-987....'''
+987...."""
 
 
 class TestPart1(TestCase):
@@ -61,6 +61,7 @@ class TestPart1(TestCase):
 
     def test_part_1(self):
         self.assertEqual(36, part_1.run(test_data.strip().splitlines()))
+
 
 class TestPart2(TestCase):
     def setUp(self):

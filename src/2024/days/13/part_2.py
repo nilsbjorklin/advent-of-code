@@ -22,7 +22,11 @@ def find_solution(machine, part1=False):
     func_params = np.array(np.rollaxis(np.array([a, b]), 1))
     func_result = res if part1 else np.array(np.add(res, 10000000000000))
     amount = np.linalg.solve(func_params, func_result).round(0).astype(dtype=int)
-    return np.sum(np.multiply(amount, [3, 1])) if np.array_equal(func_params @ amount, func_result) else 0
+    return (
+        np.sum(np.multiply(amount, [3, 1]))
+        if np.array_equal(func_params @ amount, func_result)
+        else 0
+    )
 
 
 def run(input_data):
@@ -30,5 +34,5 @@ def run(input_data):
     return sum([find_solution(machine) for machine in machines])
 
 
-if __name__ == '__main__':
-    run(open('src/2024/data/days/13/data', 'r').read())
+if __name__ == "__main__":
+    run(open("src/2024/data/days/13/data", "r").read())

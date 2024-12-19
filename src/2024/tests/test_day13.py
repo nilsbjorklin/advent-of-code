@@ -1,16 +1,16 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.13.part_1')
-part_2 = import_module('src.2024.days.13.part_2')
+part_1 = import_module("src.2024.days.13.part_1")
+part_2 = import_module("src.2024.days.13.part_2")
 
-test_data_mini = '''
+test_data_mini = """
 Button A: X+94, Y+34
 Button B: X+22, Y+67
 Prize: X=8400, Y=5400
-'''
+"""
 
-test_data = '''
+test_data = """
 Button A: X+94, Y+34
 Button B: X+22, Y+67
 Prize: X=8400, Y=5400
@@ -26,7 +26,8 @@ Prize: X=7870, Y=6450
 Button A: X+69, Y+23
 Button B: X+27, Y+71
 Prize: X=18641, Y=10279
-'''
+"""
+
 
 class TestPart1(TestCase):
     def test_part_1_mini_1(self):

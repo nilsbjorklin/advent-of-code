@@ -36,13 +36,22 @@ def calculate_sides(region):
             target = plot + direction
             if target not in region:
                 if direction.imag != 0:
-                    sides[(int(direction.real), int(direction.imag), int(plot.imag))].append((int(plot.real)))
+                    sides[
+                        (int(direction.real), int(direction.imag), int(plot.imag))
+                    ].append((int(plot.real)))
                 else:
-                    sides[(int(direction.real), int(direction.imag), int(plot.real))].append((int(plot.imag)))
+                    sides[
+                        (int(direction.real), int(direction.imag), int(plot.real))
+                    ].append((int(plot.imag)))
 
     return sum(
-        [1 if (j - i) > 1 else 0 for plots in sides.values() for i, j in zip(sorted(plots)[:-1], sorted(plots)[1:])] + [
-            len(sides)])
+        [
+            1 if (j - i) > 1 else 0
+            for plots in sides.values()
+            for i, j in zip(sorted(plots)[:-1], sorted(plots)[1:])
+        ]
+        + [len(sides)]
+    )
 
 
 def run(input_data: list[str]):
@@ -55,5 +64,5 @@ def run(input_data: list[str]):
     return result
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/12/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/12/data", "r").readlines()))

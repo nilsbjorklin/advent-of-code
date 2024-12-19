@@ -3,11 +3,11 @@ def read_data(input_data):
     row_limit = len(input_data)
     col_limit = len(input_data[0].strip())
     pos: complex = 0 + 0j
-    for (row_idx, row) in enumerate(input_data):
-        for (col_idx, val) in enumerate(row):
-            if val == '#':
+    for row_idx, row in enumerate(input_data):
+        for col_idx, val in enumerate(row):
+            if val == "#":
                 obstacles.add(col_idx + row_idx * 1j)
-            elif val == '^':
+            elif val == "^":
                 pos = col_idx + row_idx * 1j
     return pos, obstacles, row_limit, col_limit
 
@@ -25,5 +25,5 @@ def run(input_data: list[str]):
     return len(set(path))
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/06/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/06/data", "r").readlines()))

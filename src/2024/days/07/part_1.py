@@ -1,15 +1,13 @@
 def read_data(input_data):
     result = []
     for row in input_data:
-        total, values = row.split(':')
-        values = [int(num) for num in values.strip().split(' ')]
+        total, values = row.split(":")
+        values = [int(num) for num in values.strip().split(" ")]
         result.append((int(total), values))
     return result
 
 
-def calculate_values(target: int,
-                     values: list[int],
-                     total: int = 0) -> int:
+def calculate_values(target: int, values: list[int], total: int = 0) -> int:
     values_to_try: list[int] = []
     if not values:
         return target if target == total else 0
@@ -33,5 +31,5 @@ def run(input_data: list[str]):
     return result
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/07/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/07/data", "r").readlines()))

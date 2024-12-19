@@ -27,6 +27,7 @@ def run(input_data: list[str]):
             result += value.size
     return result
 
+
 def array_step(prev_array=None, value=9):
     if prev_array is None:
         prev_array = np.full((width, height), None)
@@ -44,7 +45,9 @@ def array_step(prev_array=None, value=9):
                     if res[x][y] is None:
                         res[x][y] = prev_array[new_x][new_y]
                     else:
-                        res[x][y] = np.unique(np.append(res[x][y], prev_array[new_x][new_y]))
+                        res[x][y] = np.unique(
+                            np.append(res[x][y], prev_array[new_x][new_y])
+                        )
     if value != 0:
         return array_step(res, value - 1)
     else:
@@ -58,5 +61,5 @@ def search_for(value):
     return search_result
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/10/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/10/data", "r").readlines()))

@@ -8,7 +8,7 @@ number_lookup = defaultdict(list[int])
 
 def read_data(input_data):
     stones = defaultdict(lambda: 0)
-    for stone in input_data[0].split(' '):
+    for stone in input_data[0].split(" "):
         stones[int(stone)] += 1
     return stones
 
@@ -41,5 +41,5 @@ def next_step(stone):
     return number_lookup[stone]
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/11/data', 'r').readlines(), 75))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/11/data", "r").readlines(), 75))

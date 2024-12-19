@@ -49,11 +49,16 @@ def fix_update(update):
             for before in rules[page]:
                 if before not in prev_numbers:
                     if before in update:
-                        before_index, after_index = update.index(before), update.index(page)
-                        update[after_index], update[before_index] = update[before_index], update[after_index]
+                        before_index, after_index = update.index(before), update.index(
+                            page
+                        )
+                        update[after_index], update[before_index] = (
+                            update[before_index],
+                            update[after_index],
+                        )
                         return fix_update(update)
     return update
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/05/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/05/data", "r").readlines()))

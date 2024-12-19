@@ -49,10 +49,11 @@ def run(input_data: list[str]):
     file_number = 0
     for block_value, block_size in result_blocks:
         for i in range(block_size):
-            if block_value is not None: result += file_number * block_value
+            if block_value is not None:
+                result += file_number * block_value
             file_number += 1
     return result
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/09/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/09/data", "r").readlines()))

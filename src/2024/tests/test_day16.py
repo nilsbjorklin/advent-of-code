@@ -1,10 +1,10 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.16.part_1')
-part_2 = import_module('src.2024.days.16.part_2')
+part_1 = import_module("src.2024.days.16.part_1")
+part_2 = import_module("src.2024.days.16.part_2")
 
-test_data_mini = '''
+test_data_mini = """
 ###############
 #.......#....E#
 #.#.###.#.###.#
@@ -19,9 +19,9 @@ test_data_mini = '''
 #.....#...#.#.#
 #.###.#.#.#.#.#
 #S..#.....#...#
-###############'''
+###############"""
 
-test_data = '''
+test_data = """
 #################
 #...#...#...#..E#
 #.#.#.#.#.#.#.#.#
@@ -39,7 +39,7 @@ test_data = '''
 #.#.#.#########.#
 #S#.............#
 #################
-'''
+"""
 
 
 class TestPart1(TestCase):
@@ -48,6 +48,7 @@ class TestPart1(TestCase):
 
     def test_part_1(self):
         self.assertEqual(11048, part_1.run(test_data))
+
 
 class TestPart2(TestCase):
     def test_part_2_mini(self):

@@ -1,10 +1,10 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.04.part_1')
-part_2 = import_module('src.2024.days.04.part_2')
+part_1 = import_module("src.2024.days.04.part_1")
+part_2 = import_module("src.2024.days.04.part_2")
 
-test_data = '''
+test_data = """
 MMMSXXMASM
 MSAMXMSMSA
 AMXSXMAAMM
@@ -15,11 +15,11 @@ SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX
-'''
+"""
 
 
 class TestPart1(TestCase):
-    
+
     def test_part_1(self):
         self.assertEqual(18, part_1.run(test_data.strip().splitlines()))
 

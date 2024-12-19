@@ -1,10 +1,10 @@
 from importlib import import_module
 from unittest import TestCase
 
-part_1 = import_module('src.2024.days.14.part_1')
-part_2 = import_module('src.2024.days.14.part_2')
+part_1 = import_module("src.2024.days.14.part_1")
+part_2 = import_module("src.2024.days.14.part_2")
 
-test_data = '''
+test_data = """
 p=0,4 v=3,-3
 p=6,3 v=-1,-3
 p=10,3 v=-1,2
@@ -17,7 +17,7 @@ p=9,3 v=2,3
 p=7,3 v=-1,2
 p=2,4 v=2,-3
 p=9,5 v=-3,-3
-'''
+"""
 
 
 class TestPart1(TestCase):

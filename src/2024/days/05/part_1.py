@@ -36,5 +36,5 @@ def run(input_data: list[str]):
     return middle_page_sum
 
 
-if __name__ == '__main__':
-    print(run(open('src/2024/data/days/05/data', 'r').readlines()))
+if __name__ == "__main__":
+    print(run(open("src/2024/data/days/05/data", "r").readlines()))
