@@ -1,8 +1,9 @@
 from importlib import import_module
 
 part_1 = import_module("src.2024.days.23.part_1")
+part_2 = import_module("src.2024.days.23.part_2")
 
-test_data = """
+test_data_part_1 = """
 kh-tc
 qp-kh
 de-cg
@@ -36,6 +37,18 @@ wh-qp
 tb-vc
 td-yn"""
 
+test_data_part_2 = """
+ka-co
+ta-co
+de-co
+ta-ka
+de-ta
+ka-de"""
+
 
 def test_part_1():
-    assert part_1.run(test_data) == 7
+    assert part_1.run(test_data_part_1) == 7
+
+
+def test_part_2():
+    assert part_2.run(test_data_part_2) == "co,de,ka,ta"
