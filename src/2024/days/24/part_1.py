@@ -37,11 +37,14 @@ def connect_wire(first, operation, second, target):
                     connect_wire(*wires)
 
 
-def run(input_data):
-    wires = read_data(input_data)
+def connect_wires(wires):
     for wire in wires:
         connect_wire(*wire)
-    return calculate_decimal()
+    return calculate_decimal(), gates
+
+
+def run(input_data):
+    return connect_wires(read_data(input_data)[0])
 
 
 def calculate_decimal():

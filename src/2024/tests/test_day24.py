@@ -1,6 +1,7 @@
 from importlib import import_module
 
 part_1 = import_module("src.2024.days.24.part_1")
+part_2 = import_module("src.2024.days.24.part_2")
 
 test_data_part_1_mini = """
 x00: 1
@@ -63,6 +64,53 @@ hwm AND bqk -> z03
 tgd XOR rvg -> z12
 tnw OR pbm -> gnj"""
 
+test_data_part_2_addition = """
+x00: 1
+x01: 1
+x02: 0
+x03: 1
+y00: 1
+y01: 0
+y02: 1
+y03: 1
+elf: 0
+car: 0
+
+x00 XOR y00 -> z00
+x00 AND y00 -> car
+x01 XOR y01 -> r01
+r01 XOR car -> z01
+x01 AND y01 -> car
+x02 XOR y02 -> r02
+r02 XOR car -> z02
+x02 AND y02 -> car
+x03 XOR y03 -> r03
+r03 XOR car -> z03
+x03 AND y03 -> car
+elf XOR car -> z04
+"""
+
+test_data_part_2_swapped_and = """
+x00: 0
+x01: 1
+x02: 0
+x03: 1
+x04: 0
+x05: 1
+y00: 0
+y01: 0
+y02: 1
+y03: 1
+y04: 0
+y05: 1
+
+x00 AND y00 -> z05
+x01 AND y01 -> z02
+x02 AND y02 -> z01
+x03 AND y03 -> z03
+x04 AND y04 -> z04
+x05 AND y05 -> z00"""
+
 
 def test_part_1_mini():
     assert part_1.run(test_data_part_1_mini) == 4
@@ -111,3 +159,10 @@ def test_part_1():
     for gate_value in result:
         gate, value = gate_value
         assert part_1.gates[gate] == value
+
+
+def test_part_2_addition():
+    assert part_2.run(test_data_part_2_addition) == ""
+
+def test_part_2_swapped_and():
+    assert part_2.run_for_and(test_data_part_2_swapped_and) == "z00,z01,z02,z05"
