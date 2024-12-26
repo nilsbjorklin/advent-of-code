@@ -41,7 +41,6 @@ def run(input_data, threshold=0):
 
 
 def cheats(path, index, cheat=None):
-    global tried_cheats
     cur = cheat if cheat else path[index]
     cheat_paths = []
     for new_direction in directions:
