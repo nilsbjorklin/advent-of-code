@@ -22,9 +22,7 @@ def run(input_data: list[str]):
 
 
 def total_hand_strength(cards):
-    print("cards", cards)
     cards = [hand_type(cards)] + [card_strength.index(card) for card in cards]
-    print("cards", cards)
     return "".join([chr(card + 97) for card in cards])
 
 
@@ -51,9 +49,4 @@ def hand_type(cards):
 
 
 if __name__ == "__main__":
-    print(run("""32T3K 765
-T55J5 684
-KK677 28
-KTJJT 220
-QQQJA 483"""))
     print(run(open("src/2023/data/days/07/data", "r").read()))
