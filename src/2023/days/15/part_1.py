@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 def read_data(input_data):
     return input_data.split(",")
 
