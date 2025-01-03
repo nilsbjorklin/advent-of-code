@@ -3,22 +3,24 @@ from collections import deque
 
 directions = [1j, -1j, 1, -1]
 
+
 def read_data(input_data):
     start = 0
-    plots= []
+    plots = []
     for y, row in enumerate(input_data.splitlines()):
         for x, char in enumerate(row):
-            if char != '#':
+            if char != "#":
                 plots.append(complex(x, y))
-                if char == 'S':
+                if char == "S":
                     start = complex(x, y)
     return start, plots
+
 
 def run(input_data, max_steps):
     start, plots = read_data(input_data)
     positions = deque([[0, start]])
     ends = set()
-    visited = set() 
+    visited = set()
     while len(positions) != 0:
         step, pos = positions.popleft()
         if step > max_steps:
