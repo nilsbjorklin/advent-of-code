@@ -2,10 +2,10 @@ import numpy as np
 
 
 def read_data(input_data):
-    elf_pairs = []
-    for row in input_data.splitlines():
-        elves = [list(map(int, elf.split("-"))) for elf in row.split(",")]
-        elf_pairs.append((elves))
+    elf_pairs = [
+        [list(map(int, elf.split("-"))) for elf in row.split(",")]
+        for row in input_data.splitlines()
+    ]
     return elf_pairs
 
 
