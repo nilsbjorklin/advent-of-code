@@ -19,7 +19,6 @@ def run(input_data):
             ]
             scenic_score = 1
             for tree_direction in tree_directions:
-                tree_direction
                 distance = 0
                 for next_tree in tree_direction:
                     distance += 1
