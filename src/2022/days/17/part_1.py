@@ -33,6 +33,8 @@ def run(input_data, num_rocks):
             rock = np.array(shapes[index % 5])
             rock_shape = shape_sizes[index % 5]
             rock_pos = complex(2, -(3 - highest_rock))
+        if 183 <index < 185 and index % 1 == 0:
+            print(f"{index=}, {move_index=}")
         move = moves[move_index % len(moves)]
         rock_pos = rock_move(move, rock, rock_shape, rock_pos, placed_rocks)
         move_index += 1
@@ -43,6 +45,8 @@ def run(input_data, num_rocks):
             highest_rock = int(min(highest_rock, rock_pos.imag - rock_shape[1]))
             index += 1
             rock = None
+            """if 186 <index < 189 and index % 1 == 0:
+                print(index, abs(highest_rock))"""
     return abs(highest_rock)
 
 
