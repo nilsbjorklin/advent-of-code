@@ -26,10 +26,9 @@ def calculate_monkey(name):
     actions = monkey_actions[name]
     if type(actions) != tuple:
         return actions
-    result = process_values(
+    return process_values(
         calculate_monkey(actions[0]), calculate_monkey(actions[2]), actions[1]
     )
-    return result
 
 
 @lru_cache
