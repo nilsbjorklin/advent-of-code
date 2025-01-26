@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 directions = [1, -1, 1j, -1j]
 
 def read_data(input_data):
