@@ -1,9 +1,5 @@
 import re
 
-accumulator = 0
-pointer = 0
-visited = set()
-
 
 def read_data(input_data: str) -> list[tuple[str, int]]:
     pattern = re.compile(r"(\w+) ([+-]\d+)")
@@ -16,7 +12,9 @@ def read_data(input_data: str) -> list[tuple[str, int]]:
 
 def run(input_data: str) -> int:
     commands: list[tuple[str, int]] = read_data(input_data)
-    global accumulator, pointer, visited
+    accumulator = 0
+    pointer = 0
+    visited = set()
     while pointer < len(commands):
         if pointer in visited:
             return accumulator
@@ -24,11 +22,7 @@ def run(input_data: str) -> int:
         command, value = commands[pointer]
         if command == "acc":
             accumulator += value
-        if command == "jmp":
-            pointer += value
-        else:
-            pointer += 1
-    return accumulator
+        pointer += value if command == "jmp" else 1
 
 
 if __name__ == "__main__":
