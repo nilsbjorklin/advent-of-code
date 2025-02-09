@@ -10,11 +10,10 @@ def run(input_data: str, last_nums) -> int:
     index = last_nums
     last_numbers = deque(numbers[:last_nums], maxlen=last_nums)
     for index in range(index, len(numbers)):
-        number = numbers[index]
-        if number_valid(number, last_numbers):
-            last_numbers.append(number)
+        if number_valid(numbers[index], last_numbers):
+            last_numbers.append(numbers[index])
         else:
-            return number
+            return numbers[index]
 
 
 def number_valid(target, last_numbers):
@@ -23,8 +22,7 @@ def number_valid(target, last_numbers):
         if first_number > target:
             return False
         for second_index in range(index + 1, len(last_numbers_sorted)):
-            total = last_numbers_sorted[second_index] + first_number
-            diff = total - target
+            diff = last_numbers_sorted[second_index] + first_number - target
             if diff == 0:
                 return True
             elif diff > 0:
