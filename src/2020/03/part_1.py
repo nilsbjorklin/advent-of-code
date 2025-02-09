@@ -1,24 +1,18 @@
 def read_data(input_data):
-    trees = set()
     lines = input_data.splitlines()
-    for y, row in enumerate(lines):
-        for x, char in enumerate(row):
-            if char == "#":
-                trees.add((x, y))
+    trees = {
+        (x, y)
+        for y, row in enumerate(lines)
+        for x, char in enumerate(row)
+        if char == "#"
+    }
     return trees, len(lines[0]), len(lines)
 
 
 def run(input_data):
     trees, width, height = read_data(input_data)
-    pos = (0, 0)
-    direction = (3, 1)
-    result = 0
-    print(trees)
-    while pos[1] < height:
-        pos = ((pos[0] + direction[0]) % width, pos[1] + direction[1])
-        if pos in trees:
-            result += 1
-    return result
+    path = {((y * 3) % width, y) for y in range(height + 1)}
+    return len(path.intersection(trees))
 
 
 if __name__ == "__main__":
