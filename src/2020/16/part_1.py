@@ -4,7 +4,7 @@ from functools import lru_cache
 rules = []
 
 
-def read_data(input_data: str) -> (list, list, list):
+def read_data(input_data: str) -> list:
     global rules
     rules, _, tickets = input_data.split("\n\n")
     pattern = re.compile(r"(\d+)-(\d+)")
