@@ -1,6 +1,6 @@
 def read_data(input_data: str) -> (int, list):
-    first, second = input_data.splitlines()
-    return int(first), [int(num) for num in second.split(",") if num != "x"]
+    earliest, schedule = input_data.splitlines()
+    return int(earliest), [int(num) for num in schedule.split(",") if num != "x"]
 
 
 def run(input_data: str) -> int:
