@@ -9,15 +9,15 @@ def read_data(input_data: str) -> list:
 
 def run(input_data: str) -> int:
     deck1, deck2 = read_data(input_data)
-    while len(deck1) != 0 and len(deck2) != 0:
+    while deck1 and deck2:
         card1, card2 = deck1.popleft(), deck2.popleft()
         if card1 > card2:
-            deck1 += [card1, card2]
+            deck1.extend((card1, card2))
         else:
-            deck2 += [card2, card1]
+            deck2.extend((card2, card1))
     return sum(
         (index + 1) * card
-        for index, card in enumerate(list(deck1 if len(deck2) == 0 else deck2)[::-1])
+        for index, card in enumerate(list(deck1 if deck1 else deck2)[::-1])
     )
 
 
