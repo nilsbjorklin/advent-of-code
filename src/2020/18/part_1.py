@@ -22,19 +22,18 @@ def run(input_data: str) -> int:
                 elif char == ")":
                     end_index = index
                 index += 1
-            line = (
-                    line[: start_index - 1]
-                    + str(calculate_segment(line[start_index:end_index]))
-                    + line[end_index + 1:]
+            before, segment, after = (
+                line[: start_index - 1],
+                line[start_index:end_index],
+                line[end_index + 1:],
             )
+            line = before + str(calculate_segment(segment)) + after
         result += calculate_segment(line)
     return result
 
 
 @lru_cache
 def calculate_segment(segment):
-    if "(" in segment or ")" in segment:
-        raise ValueError("Invalid segment: " + segment)
     segment = pattern.findall(segment)
     last_value = segment[0]
     for i in range(1, len(segment), 2):
