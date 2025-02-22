@@ -8,20 +8,30 @@ def read_data(input_data):
 
 def run(input_data) -> int:
     first, second = read_data(input_data)
-    values = [value for value in range(int(first), int(second) + 1) if is_valid(value)]
+    values = [
+        value
+        for value in range(int(first), int(second) + 1)
+        if is_valid(list(str(value)))
+    ]
     return len(values)
 
 
-def is_valid(value):
-    values = list(str(value))
-    contains_duplicate = False
-    for index in range(len(values) - 1):
-        first, second = int(values[index]), int(values[index + 1])
-        if second < first:
+def is_valid(values):
+    last_num = None
+    for value in values:
+        if last_num is not None and last_num > value:
             return False
-        elif first == second:
-            contains_duplicate = True
-    return contains_duplicate
+        last_num = value
+    return contains_duplicate(values)
+
+
+def contains_duplicate(values):
+    last_num = None
+    for value in values:
+        if last_num is not None and last_num == value:
+            return True
+        last_num = value
+    return False
 
 
 if __name__ == "__main__":
