@@ -1,4 +1,4 @@
-from black.trans import defaultdict
+from collections import defaultdict
 
 connections = defaultdict(list)
 connections_count = defaultdict(int)
