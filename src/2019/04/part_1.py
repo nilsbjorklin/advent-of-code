@@ -1,6 +1,3 @@
-directions = {"R": 1, "L": -1, "D": 1j, "U": -1j}
-
-
 def read_data(input_data):
     first, second = input_data.split("-")
     return first, second
