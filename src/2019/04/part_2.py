@@ -12,15 +12,14 @@ def run(input_data) -> int:
 
 def is_valid(values):
     last_num = None
-    has_duplicate = False
+    has_pair = False
     for value in values:
-        if last_num is not None:
-            if last_num > value:
-                return False
-            elif last_num == value:
-                has_duplicate = True
+        if values.count(value) == 2:
+            has_pair = True
+        if last_num is not None and last_num > value:
+            return False
         last_num = value
-    return has_duplicate
+    return has_pair
 
 
 if __name__ == "__main__":
